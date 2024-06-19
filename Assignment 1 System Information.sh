@@ -92,4 +92,5 @@ $ports
 
 UFW Rules: 
 $firewallRules
+
 EOF
