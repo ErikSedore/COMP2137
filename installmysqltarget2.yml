@@ -1,0 +1,27 @@
+---
+
+- name: install mysql on target1
+  hosts: target2-mgmt
+  remote_user: remoteadmin
+  tasks:
+    - name: mysql install
+      apt:
+        name: mysql-server
+        state: present
+        update_cache: yes
+
+    - name: ensure ufw installed
+      apt: name=ufw update_cache=true
+
+    - name: enable and allow ssh
+      ufw:
+        state: enabled
+        rule: allow
+        name: OpenSSH
+
+    - name: allow mysql
+      ufw:
+        rule: allow
+        port: 3306
+        proto: tcp
+
